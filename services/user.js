@@ -47,14 +47,17 @@ const GetTransactionHistory = function(chain, userPublicKey) {
 
 const IsKeyExisted = function(chain, userPublicKey) {
 
+    let existed = false
     if(chain) {
         chain.forEach(block => {
-            if(block.data.from === userPublicKey || block.data.to === userPublicKey)
-                return true
+            if(block.data.from === userPublicKey || block.data.to === userPublicKey) {
+                console.log('got it')
+                existed = true
+            }
         })
     }
 
-    return false
+    return existed
 }
 
 function SHA256(input) {

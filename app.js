@@ -56,6 +56,7 @@ app.post('/user/wallet', (req, res) => {
 
     if(req.body.userPublicKey) {
        const result = userService.IsKeyExisted(blockChain.chain, req.body.userPublicKey)
+
        res.status(200).send(result)
     }
     else
