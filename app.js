@@ -64,10 +64,6 @@ app.post('/user/transaction', (req, res) => {
     res.status(200).send()
 })
 
-app.get('*', (req,res) => {
-    res.status(404).send('Url not found')
-})
-
 // debug and view all structure
 app.get('/transaction/all', (req, res) => {
     res.status(200).send(blockChain.chain)
@@ -76,4 +72,10 @@ app.get('/transaction/all', (req, res) => {
 app.get('/block-chain', (req, res) => {
     res.status(200).send(blockChain)
 })
+
+app.get('*', (req,res) => {
+    res.status(404).send('Url not found')
+})
+
+
 
