@@ -22,6 +22,10 @@ const GetAccountBalance = function(chain, userPublicKey) {
             if(block.data.to == userPublicKey) {
                 balance += +block.data.amount
             }
+
+            if(block.data.from == userPublicKey) {
+                balance -= +block.data.amount
+            }
         });
     }
     
@@ -51,7 +55,7 @@ const IsKeyExisted = function(chain, userPublicKey) {
     if(chain) {
         chain.forEach(block => {
             if(block.data.from === userPublicKey || block.data.to === userPublicKey) {
-                console.log('got it')
+
                 existed = true
             }
         })

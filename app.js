@@ -27,11 +27,6 @@ app.use(bodyParse.json())
 app.listen(PORT, () => console.log('on'))
 
 // route
-// app.get('*', (req,res, next) => {
-//      req.body.chain = blockChain
-//      next()
-// })
-
 app.get('/user/wallet', (req, res) => {
 
     const result = userService.CreateWallet()
@@ -63,16 +58,22 @@ app.post('/user/wallet', (req, res) => {
         res.status(400).send('missing wallet address')
 })
 
-app.get('/demo', (req, res) => {
+app.post('/user/transaction', (req, res) => {
+    userService.AddBlock(blockChain, req.body)
 
-    const data = {
-        'name' : 'hehehe',
-        'age': 12
-    }
-    userService.AddBlock(blockChain, data)
-    res.status(200).send(blockChain.chain)
+    res.status(200).send()
 })
 
 app.get('*', (req,res) => {
     res.status(404).send('Url not found')
 })
+
+// debug and view all structure
+app.get('/transaction/all', (req, res) => {
+    res.status(200).send(blockChain.chain)
+})
+
+app.get('/block-chain', (req, res) => {
+    res.status(200).send(blockChain)
+})
+
